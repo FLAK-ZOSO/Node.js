@@ -1,5 +1,5 @@
 const http = require("http");
-const fs = require('fs');
+const fs = require('fs').promises;
 
 const host = 'localhost';
 const port = 8000;
@@ -7,9 +7,10 @@ const port = 8000;
 function requestListener(req, res) {
     res.setHeader("Content-Type", "text/html");
     res.writeHead(200);
-    fs.readFile('main.html', 'utf-8', (_, data) => {
-        res.end(data);
-    })
+    fs.readFile('main.html')
+        .then(contents => {
+            res.end(contents);
+        })
 }
 
 const server = http.createServer(requestListener);
