@@ -25,14 +25,17 @@ server.on('request', (request, response) => {
 	});
     // response.setHeader('Content-Type', 'application/json');
 
-    response.on('error', (err) => {
-        console.error(err);
-    });
+    setTimeout(() => {
+        response.on('error', (err) => {
+            console.error(err);
+        });
 
-    response.writeHead(200, {'Content-Type': 'application/json'})
-    const responseBody = { headers, method, url, body };
-    response.write(JSON.stringify(responseBody));
-    response.end();
+        response.writeHead(200, {'Content-Type': 'application/json'})
+        const responseBody = { headers, method, url, body };
+        response.write(JSON.stringify(responseBody));
+        response.end();
+    }, 0.5);
 });
 server.listen(8080, '127.0.0.1');
 console.log('Server running at http://127.0.0.1:8080/');
+// https://stackoverflow.com/questions/71738950/node-js-is-giving-different-http-responses-with-different-timeouts
