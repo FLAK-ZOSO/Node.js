@@ -23,7 +23,7 @@ const server = http.createServer((request, response) => {
         request.on('data', chunk => {
             data += chunk;
         })
-        
+
         request.on('end', () => {
             console.log(JSON.parse(data).todo); // 'Buy the milk'
             response.end();
