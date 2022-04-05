@@ -5,7 +5,7 @@ const port = 8000;
 
 function requestListener(req, res) {
     res.setHeader("Content-Type", "application/json");
-    res.writeHead(200);
+    res.writeHead(200); // https://redgifs.com/watch/frenchunhappymoose
     res.end(`{"message": "This is a JSON response"}`);
 }
 
